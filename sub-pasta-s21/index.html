@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlo do Projetor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #0056b3;
+        }
+        .status {
+            background-color: #e2e3e5;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        button {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button.power-off {
+            background-color: #dc3545;
+        }
+        button.power-off:hover {
+            background-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Painel do Projetor</h1>
+    <div class="status">IP Alvo: 169.254.155.16</div>
+
+    <!-- Formulário que envia os comandos para o IP do projetor -->
+    <!-- Nota: O atributo 'action' deve ser ajustado conforme a API ou URL exata do fabricante -->
+    <form action="http://169.254.155" method="GET" target="dummyframe">
+        
+        <div class="grid-container">
+            <!-- Comandos de Energia -->
+            <button type="submit" name="cmd" value="power_on">Ligar Projetor</button>
+            <button type="submit" name="cmd" value="power_off" class="power-off">Desligar</button>
+            
+            <!-- Seleção de Entradas (Inputs) -->
+            <button type="submit" name="source" value="hdmi1">Entrada HDMI 1</button>
+            <button type="submit" name="source" value="hdmi2">Entrada HDMI 2</button>
+            <button type="submit" name="source" value="vga">Entrada VGA</button>
+            <button type="submit" name="source" value="video">Vídeo Composto</button>
+        </div>
+
+    </form>
+
+    <!-- Submissão em segundo plano para a página não fazer recarga completa -->
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+</body>
+</html>
